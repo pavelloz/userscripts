@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         Remove twitter algo spam
-// @namespace    https://twitter.com
+// @name         Instagram algo trash
+// @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Remove all algo trash from twitter. Its not funny or interesting. Configure phrases array if you want to blacklist more keywords, ie. "crypto".
+// @description  Removes suggested posts from instagram
 // @author       Pavel
-// @match        https://*twitter.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
+// @match        https://www.instagram.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=instagram.com
 // @grant        none
 // ==/UserScript==
 
@@ -13,7 +13,7 @@ const $qa = (s, p = document) => [...p.querySelectorAll(s)];
 
 const cleanup = (phrases) => {
   phrases.forEach((phrase) => {
-    $qa("main span")
+    $qa("main section")
       .filter((el) => el.textContent === phrase)
       .map((el) => {
         el.closest("article").remove();
@@ -22,7 +22,7 @@ const cleanup = (phrases) => {
 };
 
 (() => {
-  const phrases = ["Based on your likes", "Funny tweets", "See more"];
+  const phrases = ["Suggested post"];
 
   cleanup(phrases);
 
