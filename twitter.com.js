@@ -14,7 +14,7 @@ const $qa = (s, p = document) => [...p.querySelectorAll(s)];
 const cleanup = (phrases) => {
   phrases.forEach((phrase) => {
     $qa("main span")
-      .filter((el) => el.textContent === phrase)
+      .filter((el) => el.textContent.includes(phrase))
       .map((el) => {
         el.closest("article").remove();
       });
